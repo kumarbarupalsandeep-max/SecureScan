@@ -67,3 +67,29 @@ Risks: false confidence, scanner false positives, unsafe dynamic scans, secret l
 
 ## 12. Next work
 Build a feature matrix by scanner type and language, validate API/licensing terms, test result normalization with sample SARIF/JSON, and document authorized-scan safeguards.
+
+## 15. Deep research addendum — evidence and product decisions
+
+### Market evidence
+OWASP ASVS provides a structured set of requirements for designing, developing, and testing web application security controls. GitHub’s security documentation describes code scanning for vulnerabilities/errors, secret scanning for exposed credentials, and dependency review for vulnerable dependency changes; availability can differ between public and private repositories and by plan. Sources: [OWASP ASVS](https://asvs.owasp.org/), [GitHub code scanning](https://docs.github.com/en/code-security/concepts/code-scanning), [Secret scanning](https://docs.github.com/en/code-security/concepts/secret-security/secret-scanning), [GitHub Advanced Security](https://docs.github.com/en/get-started/learning-about-github/about-github-advanced-security), [OWASP Dependency-Check](https://owasp.org/projects/Dependency-Check).
+
+### Competitive implications
+SecureScan should present a unified, evidence-based risk queue across SAST, dependency/SCA, secrets, configuration, and container/IaC findings. Do not treat all findings as equally urgent; prioritize exploitability, asset criticality, exposure, reachability, and remediation confidence. Keep scanner provenance visible and avoid claiming that one scan proves an application is secure.
+
+### Recommended core workflows
+1. Connect a repository or upload a supported artifact with explicit scope and authorization.
+2. Run policy-approved scanners in isolated workers with resource limits and no unnecessary outbound access.
+3. Normalize findings to a common schema while preserving original scanner IDs and raw evidence.
+4. Deduplicate findings and map dependencies to package/version/advisory.
+5. Triage by severity, exploitability, reachability, confidence, and business context.
+6. Assign fixes, create tickets/PR links, track SLA, and rescan to verify closure.
+7. Generate an auditable report showing scan coverage, exclusions, tool versions, and timestamps.
+
+### Security and privacy
+Treat source code and scan artifacts as sensitive. Use tenant-isolated workers, encrypted storage, least-privilege repository tokens, ephemeral workspaces, retention controls, and redaction. Never execute untrusted build scripts in a privileged environment. Separate a scanner's detection from the product's risk score; document scoring inputs and allow expert review.
+
+### Validation and success measures
+Track scan coverage, median time to triage, true-positive rate from sampled reviews, false-positive dismissal rate, time to remediate critical findings, verified closure rate, and stale finding count. Validate scanners against a controlled test corpus before using detection-rate claims.
+
+### Sources and caveats
+OWASP ASVS is a verification standard; it is not itself a scanner. Scanner coverage and licensing vary. Security findings require human context and should not be presented as legal certification or guarantee of safety.
