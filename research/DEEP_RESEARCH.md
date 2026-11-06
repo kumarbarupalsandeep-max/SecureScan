@@ -91,3 +91,46 @@ Ek simple risk list banayein jo bataye: issue kya hai, kyun important hai, kahan
 
 **Note:** Security scan legal certification ya complete safety ki guarantee nahi hai.
 
+
+
+## 14. Competitor reference research — Snyk aur Qualys
+
+### Reference URLs
+- Snyk: https://snyk.io/
+- Snyk docs: https://docs.snyk.io/
+- Qualys: https://www.qualys.com/
+- Qualys documentation: https://docs.qualys.com/
+- Qualys VMDR overview: https://docs.qualys.com/en/vm/latest/about_qualys_vm_vmdr.htm
+
+### Snyk se kya samajh aata hai?
+Snyk developer-focused application security mein code, open-source dependencies, container images aur cloud configuration risks scan/prioritize/fix karne par focus karta hai. Developer workflow aur IDE/CI integrations findings ko development ke dauran address karne mein madad karte hain.
+
+### Qualys se kya samajh aata hai?
+Qualys VMDR asset discovery/inventory, vulnerability assessment, risk prioritization aur remediation/patch workflows ko connect karta hai. Qualys docs asset inventory, vulnerability severity, risk score aur patch identification ko core stages ke roop mein explain karti hain.
+
+### Pages / feature map
+1. Security posture dashboard
+2. Projects / applications / asset inventory
+3. Repository and cloud account connections
+4. Scan runs and scan configuration
+5. Findings / vulnerabilities
+6. Finding detail with evidence and affected asset
+7. Dependency and SBOM inventory
+8. Container and IaC findings
+9. Secrets and code issues
+10. Risk prioritization and remediation queue
+11. Exception / accepted-risk management
+12. Reports, integrations, policies and audit
+
+### Important workflow
+Asset/repository discover → authorized scan → finding normalize → severity + exploitability + asset context evaluate → owner assign → remediation guidance → fix → rescan/verify → evidence retain.
+
+### Original SecureScan direction
+Snyk ka developer-first remediation aur Qualys ka asset/risk context combine karne ka idea useful hai. SecureScan mein ek “why this matters” card ho: affected component, reachable/exploitable context, evidence, recommended fix, owner, due date aur verification status.
+
+### Design / implementation cautions
+- Scanner result ko proof ke bina confirmed exploit na batayein.
+- False-positive, accepted-risk aur exception expiry states hon.
+- Scan credentials least-privilege and secret vault mein store hon.
+- “100% secure” ya “zero risk” guarantee kabhi na dein.
+
